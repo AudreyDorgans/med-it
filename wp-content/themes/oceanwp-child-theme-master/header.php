@@ -80,13 +80,7 @@ $lien=get_field('lien_google_maps', 161);
 
 <!-- Code pour fermer la popup -->
 
-<script>
-    jQuery(document).ready(function($) {
-        $('.popup-close').click(function(){
-            $('.popup-overlay').hide();
-        });
-    });
-</script>
+
 
 <!-- Ajout d'un bouton contact au menu -->
 

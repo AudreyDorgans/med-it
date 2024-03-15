@@ -26,8 +26,20 @@ function oceanwp_child_enqueue_parent_style() {
 	// Load the stylesheet
 	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'oceanwp-style' ), $version );
 
+	 // Déclarer jQuery
+ 	wp_enqueue_script('jquery' );
+
+	// Déclarer le JS
+	wp_enqueue_script( 
+        'script-pop-up', 
+        get_stylesheet_directory_uri() . '/JS/script-pop-up.js', 
+        array( 'jquery' ), 
+        '1.0', 
+        true
+    );
 }
 add_action( 'wp_enqueue_scripts', 'oceanwp_child_enqueue_parent_style' );
+
 
 
 function contact_btn( $items, $args ) {
