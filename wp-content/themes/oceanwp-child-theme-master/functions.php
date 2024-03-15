@@ -25,28 +25,21 @@ function oceanwp_child_enqueue_parent_style() {
 	$version = $theme->get( 'Version' );
 	// Load the stylesheet
 	wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'oceanwp-style' ), $version );
-
-	 // Déclarer jQuery
- 	wp_enqueue_script('jquery' );
-
-	// Déclarer le JS
-	wp_enqueue_script( 
-        'script-pop-up', 
-        get_stylesheet_directory_uri() . '/JS/script-pop-up.js', 
-        array( 'jquery' ), 
-        '1.0', 
-        true
-    );
+	wp_enqueue_script('script-pop-up', get_stylesheet_directory_uri() . '/JS/script-pop-up.js', array( 'jquery' ), '1.0', true);
 }
 add_action( 'wp_enqueue_scripts', 'oceanwp_child_enqueue_parent_style' );
 
 
 
 function contact_btn( $items, $args ) {
-	$permalink = get_permalink(354);
-	$items .= '<li><a href="'.esc_url( $permalink ).'"><span class="text-wrap" id="contact-btn">Nous contacter</span></a></li>';
-	return $items;
+    // Vérifie si le menu actuel est le main_menu
+    if ( $args->theme_location == 'main_menu' ) {
+        $permalink = get_permalink(354);
+        $items .= '<li><a href="'.esc_url( $permalink ).'"><span class="text-wrap" id="contact-btn">Nous contacter</span></a></li>';
+    }
+    return $items;
 }
 
 add_filter( 'wp_nav_menu_items', 'contact_btn', 10, 2 );
+
 
